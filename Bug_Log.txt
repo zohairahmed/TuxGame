@@ -1,0 +1,22 @@
+Bug 1: Flickering status bar. Discovered this by seeing it flashing on the screen. 2 hours to fix, changed 2 lines (the source argument in memcpy as well as dest)
+ 	in my status_bar_draw function and the value of target_img in set_mode_x.
+
+Bug 2: Unable to print any text on my status bar. Discovered this by seeing a solid color there, but was able to draw a different solid color to the status bar.
+	Fixed this by adding an offset to my buffer address related to planes. Took 2 hours to figure this out.
+
+Bug 3: Got text to display, struggled to make sure it stretched properly. Discovered this by seeing the letters cramped and not taking up 16 bits vertically.
+	Fixed this by adding an offset of the x position in the row of the character font_data involving the number of planes and multiplying the modulus of that by 1440. Took 3 hours to figure out.
+	
+Bug 4: Was unable to connect tux emulator to the program. Noticed as LEDs did not change on emulator.
+	Fixed this by changing one line in input.c, I incorrectly copied the instantiation for fd (used "tty50" instead of "ttyS0"). This took 3 hours to figure out.
+
+Bug 5: The commands input into the controller showed up on the status bar, but did not change anything in game. Discovered this by seeing status bar display weird chars. Fixed by changing assignments in input.c 
+	from command = CMD_whatever to pushed = CMD_whatever. Took 30 minutes to fix.
+
+Bug 6: The leds updated, but displayed invalid values at start. Discovered by seeing garbage at game start, but correct itself later. Fixed this by displaying all LEDS in display_time_on_tux instead of letting it
+	vary based on which leds had no reason to turn on. Took 4 hours to figure out.
+
+Bug 7: Left, right and down were mapped wrong in my button mapping. Discovered this by seeing that pressing left would move the screen down, right moved, left, down moved up. Fixed by changing the values in input.c
+	for proper button mapping. Took 5 minutes to fix.
+
+I could not get threading to work in adventure with the controller. I started it too late but left what I wrote there to show my attempt. I also didn't get to octrees because I started too late.
